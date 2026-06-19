@@ -1,0 +1,257 @@
+/* Zwift Inspired Aesthetic - Blue & Purple Gradient */
+
+.navbar {
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Centering vertically */
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 30px;
+  height: 100%; /* Ensure container fills navbar height */
+}
+
+.nav-logo {
+  color: var(--z-white);
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-style: italic;
+  font-size: 1.8rem;
+  gap: 10px;
+  text-transform: uppercase;
+  line-height: 1; /* Prevent extra height */
+}
+
+.nav-logo span {
+  background: var(--z-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 10px;
+  margin: 0;
+  align-items: center; /* Centering items vertically */
+  height: 100%;
+}
+
+.nav-links {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  padding: 8px 20px;
+  border-radius: 50px;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center; /* Center text inside link */
+  height: 38px; /* Consistent height with avatar */
+}
+
+.nav-links:hover {
+  color: var(--z-white);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Fix Profile Button Hover */
+.nav-links.profile-trigger {
+  padding: 0;
+  background: transparent !important; /* Remove background on hover for profile */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px; /* Fixed width for circular hit area */
+}
+
+.nav-links.profile-trigger:hover .profile-avatar {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(0, 168, 232, 0.5);
+  border-color: var(--z-white);
+}
+
+.nav-links.active, .nav-links:active {
+  background: var(--z-gradient);
+  color: var(--z-white);
+}
+
+/* Main Content Wrapper */
+.main-content {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Zwift Style Buttons */
+.btn-duo {
+  position: relative;
+  border: none;
+  padding: 14px 30px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 50px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  overflow: hidden;
+  transition: all 0.3s;
+  color: var(--z-white);
+  background: var(--z-navy);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary {
+  background: var(--z-gradient);
+  box-shadow: 0 4px 20px rgba(0, 168, 232, 0.3);
+}
+
+.btn-primary:hover {
+  background: var(--z-gradient-hover);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 25px rgba(0, 168, 232, 0.4);
+}
+
+.btn-secondary {
+  background: rgba(0, 168, 232, 0.1);
+  border: 2px solid var(--z-blue);
+  color: var(--z-blue);
+}
+
+.btn-danger {
+  background: rgba(252, 103, 25, 0.1);
+  border: 2px solid var(--z-orange);
+  color: var(--z-orange);
+}
+
+.btn-danger:hover {
+  background: var(--z-orange);
+  color: var(--z-white);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  color: var(--z-white);
+}
+
+.btn-outline:hover {
+  border-color: var(--z-white);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Zwift Cards */
+.card-duo {
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 30px;
+  margin-bottom: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Zwift Style Inputs */
+.input-duo {
+  width: 100%;
+  padding: 16px 24px;
+  background: rgba(15, 23, 42, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: var(--z-white);
+  outline: none;
+  transition: all 0.3s;
+}
+
+.input-duo:focus {
+  border-color: var(--z-blue);
+  background: rgba(15, 23, 42, 0.8);
+  box-shadow: 0 0 0 4px rgba(0, 168, 232, 0.2);
+}
+
+/* Profile Trigger inside Nav */
+.profile-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid var(--z-blue);
+  background: var(--z-gradient);
+  overflow: hidden;
+  padding: 2px;
+}
+
+.profile-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Fix Hamburger Menu Icon */
+.menu-icon {
+  display: none; /* Hidden by default (Desktop) */
+  cursor: pointer;
+  color: var(--z-white);
+  z-index: 1001;
+  height: 32px;
+  align-items: center;
+}
+
+/* Loader */
+.loader {
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top: 3px solid var(--z-blue);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@media screen and (max-width: 600px) {
+  .nav-menu {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: var(--z-deep-blue);
+    flex-direction: column;
+    padding: 20px;
+    display: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .nav-menu.active { display: flex; }
+  .nav-links { border-radius: 10px; width: 100%; text-align: center; }
+  .menu-icon { display: flex; }
+}

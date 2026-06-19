@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Zwift-Inspired Palette */
+  --z-orange: #fc6719; /* Signature Zwift */
+  --z-blue: #00a8e8;
+  --z-purple: #8e2de2;
+  --z-deep-blue: #0f172a;
+  --z-navy: #1e293b;
+  --z-white: #ffffff;
+  
+  /* Gradient Primary */
+  --z-gradient: linear-gradient(135deg, var(--z-blue) 0%, var(--z-purple) 100%);
+  --z-gradient-hover: linear-gradient(135deg, #00c6ff 0%, #a64dff 100%);
+  
+  /* Layout Colors */
+  --bg-color: #0b0f19;
+  --card-bg: rgba(30, 41, 59, 0.7);
+  --text-primary: var(--z-white);
+  --text-secondary: #94a3b8;
+  
+  font-family: 'Inter', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  display: block;
+  min-height: 100vh;
+  overflow-x: hidden;
+  /* Zwift atmospheric background */
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(0, 168, 232, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(142, 45, 226, 0.15) 0%, transparent 40%);
+  background-attachment: fixed;
+}
+
+h1, h2, h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+}
+
+#root {
+  width: 100%;
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Global Transition */
+* {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Slanted helper */
+.slanted {
+  transform: skewX(-10deg);
+}
+.slanted-child {
+  transform: skewX(10deg);
+  display: inline-block;
+}

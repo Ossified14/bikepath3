@@ -1,0 +1,13 @@
+RewriteEngine On
+
+# 1. Jika ada folder bikepath-backend, biarkan saja (NC = No Case, tidak peduli besar kecil)
+RewriteCond %{REQUEST_URI} ^/bikepath-backend/ [NC]
+RewriteRule ^ - [L]
+
+# 2. Jika file yang diminta memang ada (seperti logo, css, js), langsung berikan
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# 3. Selain itu (seperti /map, /profile, /activity), arahkan semua ke index.html
+RewriteRule ^(.*)$ index.html [L]
