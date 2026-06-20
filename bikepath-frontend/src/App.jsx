@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom'
+import { Routes, Route, Link, useNavigate } from 'react-router-dom'
 import { Menu, X, Bike, User } from 'lucide-react'
 import './App.css'
 import Login from './components/Login'
@@ -10,6 +10,53 @@ import ProfilePage from './pages/ProfilePage'
 import CommunityPage from './pages/CommunityPage'
 import FriendsPage from './pages/FriendsPage'
 import { getProfile } from './services/bikepathService'
+
+function useSessionTimeout(timeoutMs = 60000) {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) return; // Belum login, tidak perlu timer
+
+    // Cek apakah sesi sudah kedaluwarsa sejak terakhir aktif
+    const lastActive = localStorage.getItem('lastActive');
+    if (lastActive) {
+      const elapsed = Date.now() - parseInt(lastActive, 10);
+      if (elapsed > timeoutMs) {
+        localStorage.clear();
+        alert('Sesi Anda telah berakhir karena tidak aktif. Silakan login kembali.');
+        navigate('/');
+        return;
+      }
+    }
+
+    // Set timestamp aktivitas awal
+    localStorage.setItem('lastActive', Date.now().toString());
+
+    // Perbarui timestamp setiap ada interaksi pengguna
+    const updateActivity = () => {
+      localStorage.setItem('lastActive', Date.now().toString());
+    };
+
+    // Perbarui timestamp secara berkala selama tab terbuka (tiap 5 detik)
+    const interval = setInterval(() => {
+      localStorage.setItem('lastActive', Date.now().toString());
+    }, 5000);
+
+    const events = ['mousemove', 'mousedown', 'keypress', 'scroll', 'touchstart'];
+    events.forEach(event => window.addEventListener(event, updateActivity));
+
+    return () => {
+      clearInterval(interval);
+      events.forEach(event => window.removeEventListener(event, updateActivity));
+    };
+  }, [navigate, timeoutMs]);
+}
+
+function SessionGuard({ children }) {
+  useSessionTimeout(60000); // 1 menit
+  return children;
+}
 
 function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -45,12 +92,10 @@ function Navigation() {
           <span>BIKE<span>PATH</span></span>
         </Link>
 
-        {/* Hamburger Icon - Only for Mobile via CSS */}
         <div className="menu-icon" onClick={toggleMenu}>
           {isOpen ? <X size={32} /> : <Menu size={32} />}
         </div>
 
-        {/* Nav Menu */}
         <ul className={isOpen ? 'nav-menu active' : 'nav-menu'}>
           {!token ? (
             <>
@@ -75,7 +120,6 @@ function Navigation() {
               <li className="nav-item">
                 <Link to="/friends" className="nav-links" onClick={closeMenu}>FRIENDS</Link>
               </li>
-
               <li className="nav-item">
                 <Link to="/profile" className="nav-links profile-trigger" onClick={closeMenu}>
                   <div className="profile-avatar">
@@ -98,7 +142,7 @@ function Navigation() {
 
 function App() {
   return (
-    <Router>
+    <SessionGuard>
       <Navigation />
       <div className="main-content">
         <Routes>
@@ -111,10 +155,8 @@ function App() {
           <Route path="/friends" element={<FriendsPage />} />
         </Routes>
       </div>
-    </Router>
-  )
+    </SessionGuard>
+  );
 }
 
 export default App
-
-
